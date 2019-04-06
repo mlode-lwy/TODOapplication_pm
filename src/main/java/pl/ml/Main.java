@@ -8,6 +8,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import pl.ml.UserController.UserController;
 
+import javax.jws.soap.SOAPBinding;
+
 /**
  * @author pmatusiak
  */
@@ -21,8 +23,10 @@ public class Main {
 
         //UserController.registerUser();
 
-        UserController.checkIfLoginExists("kowal137");
+//        UserController.checkIfLoginExists("kowal137");
         System.out.println();
+
+        UserController.removeUser("kowal1337", "dupa");
 
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();

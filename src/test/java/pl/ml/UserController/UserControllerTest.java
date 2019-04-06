@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import sun.rmi.runtime.Log;
 
 import javax.jws.soap.SOAPBinding;
+import javax.persistence.NoResultException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -49,4 +50,5 @@ class UserControllerTest {
                 () -> assertFalse(UserController.checkIfLoginMatchesPassword("asd", "asd")),
                 () -> assertFalse(UserController.checkIfLoginMatchesPassword("asd", "dupa")));
     }
+
 }

@@ -109,6 +109,46 @@ public class UserController {
     }
 
 
-    public static void logIn() {
+    public static void logIn(String userName, String password) {
+        if (checkIfLoginExists(userName)){
+            if (checkIfLoginMatchesPassword(userName,password)){
+                //TODO move to tasksScene
+            }
+        } else {
+            logger.log(Level.INFO, "Wrong login or password!");
+        }
     }
+
+    public static void removeUser(String userName, String password){
+        if (checkIfLoginExists(userName)){
+            if (checkIfLoginMatchesPassword(userName, password)){
+                session = HibernateUtil
+                        .getSessionFactory()
+                        .openSession();
+                session.beginTransaction();
+
+                Users user;
+                user = (Users) session.createQuery(
+                        "FROM Users "
+                                + "WHERE USER_NAME = '"
+                                + userName
+                                + "'"
+                                + " AND PASSWORD = '"
+                                + password
+                                + "'")
+                        .getSingleResult();
+
+                logger.log(Level.INFO, "Your account has been removed!");
+                session.delete(user);
+                session.getTransaction().commit();
+                session.close();
+                //TODO move to loginScene
+            } else {
+                logger.log(Level.INFO, "Wrong password!");
+            }
+        } else {
+            logger.log(Level.INFO, "Wrong login!");
+        }
+    }
+
 }
