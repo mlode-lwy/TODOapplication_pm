@@ -4,9 +4,6 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import sun.rmi.runtime.Log;
-
-import javax.jws.soap.SOAPBinding;
 
 import static org.junit.jupiter.api.Assertions.*;
 

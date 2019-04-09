@@ -32,4 +32,7 @@ public class Tasks {
 
     @Column(name="STATUS")
     private String status;
+
+    @Column(name="USER_ID")
+    private int userID;
 }

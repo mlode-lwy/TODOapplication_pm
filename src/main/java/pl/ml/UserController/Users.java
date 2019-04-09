@@ -2,8 +2,10 @@ package pl.ml.UserController;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.ml.TaskController.Tasks;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Users entity
@@ -18,9 +20,9 @@ import javax.persistence.*;
 public class Users {
 
     @Id
-    @Column
+    @Column(name="USER_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int userID;
 
     @Column(name = "FIRST_NAME")
     private String firstName;
@@ -33,4 +35,7 @@ public class Users {
 
     @Column(name="PASSWORD")
     private String password;
+
+    @Transient
+    private List<Tasks> listTasks;
 }
