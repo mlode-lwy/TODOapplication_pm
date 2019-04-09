@@ -46,6 +46,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+
         BasicConfigurator.configure();
         logger.setLevel(Level.ALL);
 

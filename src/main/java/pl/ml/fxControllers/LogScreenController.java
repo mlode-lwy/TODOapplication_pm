@@ -1,16 +1,19 @@
 package pl.ml.fxControllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import lombok.Data;
 import pl.ml.UserController.UserController;
 import pl.ml.UserController.Users;
 
-
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -46,12 +49,20 @@ public class LogScreenController implements Initializable {
             alert.setHeaderText("Wrong login or password");
             alert.showAndWait();
         } else {
-
+            userNameField.setText("Zalogowałeś się, ale nie zapłaciłeś i chuj");
+            //TODO
         }
 
     }
 
-    public void setRegistryButton(MouseEvent mouseEvent) {
+    public void setRegistryButton() throws IOException {
+        Stage registryStage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/registry.fxml"));
+        fxmlLoader.load();
 
+        Parent root = fxmlLoader.getRoot();
+        registryStage.setScene(new Scene(root, 650, 350));
+        registryStage.show();
     }
 }

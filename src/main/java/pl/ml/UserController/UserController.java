@@ -6,6 +6,8 @@ import org.hibernate.Session;
 import pl.ml.HibernateUtil;
 
 import javax.persistence.NoResultException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author pmatusiak
@@ -16,17 +18,19 @@ public class UserController {
 
     private final static Logger logger = Logger.getLogger(UserController.class);
 
-    public static void registerUser() {
+    private final static String passwordPattern =  "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{8,40})";
+
+    public static void registerUser(String firstName, String lastName, String userName, String password) {
         session = HibernateUtil
                 .getSessionFactory()
                 .openSession();
         session.beginTransaction();
 
         Users user = new Users();
-        user.setFirstName("Jan");
-        user.setLastName("Kowalski");
-        user.setUserName("kowal1337");
-        user.setPassword("dupa");
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setUserName(userName);
+        user.setPassword(password);
 
         logger.log(Level.INFO, "Dodano "
                 + user.getFirstName() + " "
@@ -208,4 +212,8 @@ public class UserController {
         return null;
     }
 
+    public static boolean checkIfPasswordMatchesPattern(String password){
+        Matcher matcher = Pattern.compile(passwordPattern).matcher(password);
+        return matcher.matches();
+    }
 }
