@@ -41,7 +41,7 @@ public class LogScreenController implements Initializable {
 
     }
 
-    public void setLogInButton() {
+    public void setLogInButton() throws IOException {
         Users user = UserController.logIn(userNameField.getText(), passwordField.getText());
         if (user == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -49,10 +49,22 @@ public class LogScreenController implements Initializable {
             alert.setHeaderText("Wrong login or password");
             alert.showAndWait();
         } else {
-            userNameField.setText("Zalogowałeś się, ale nie zapłaciłeś i chuj");
-            //TODO
-        }
+            Stage registryStage = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/tasks.fxml"));
+            fxmlLoader.load();
 
+            TaskSceneController taskSceneController = fxmlLoader.getController();
+            taskSceneController.setUser(user);
+            Parent root = fxmlLoader.getRoot();
+
+            Stage stage = (Stage) logInButton.getScene().getWindow();
+            stage.close();
+
+            registryStage.setScene(new Scene(root, 650, 350));
+            registryStage.show();
+            taskSceneController.loadTasks();
+        }
     }
 
     public void setRegistryButton() throws IOException {

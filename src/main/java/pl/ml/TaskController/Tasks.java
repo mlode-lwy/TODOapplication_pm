@@ -2,6 +2,7 @@ package pl.ml.TaskController;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.ml.TaskStatus;
 
 import javax.persistence.*;
 
@@ -31,7 +32,7 @@ public class Tasks {
     private String dueDate;
 
     @Column(name="STATUS")
-    private String status;
+    private TaskStatus status;
 
     @Column(name="USER_ID")
     private int userID;

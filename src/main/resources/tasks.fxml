@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:controller="pl.ml.fxControllers.TaskSceneController" prefHeight="400.0" prefWidth="640.0"
+      xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+            <children>
+                <Label fx:id="descriptionLabel" alignment="CENTER" layoutX="142.0" layoutY="54.0" prefHeight="284.0"
+                       prefWidth="488.0" style="&#10;" text="Description" textAlignment="CENTER" textFill="#9f9f9f"
+                       wrapText="false">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <MenuBar layoutY="2.0">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="File">
+                            <items>
+                                <MenuItem fx:id="newMenuItem" mnemonicParsing="false" text="New"/>
+                                <MenuItem fx:id="deleteMenuItem" mnemonicParsing="false" text="Delete"/>
+                                <MenuItem fx:id="closeMenuItem" mnemonicParsing="false" text="Close"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Edit">
+                            <items>
+                                <MenuItem fx:id="editMenuItem" mnemonicParsing="false" text="Edit"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="View">
+                            <items>
+                                <MenuItem fx:id="showToDoTasksMenuItem" mnemonicParsing="false" text="TODO tasks"/>
+                                <MenuItem fx:id="showDoneTasksMenuItem" mnemonicParsing="false" text="Done! tasks"/>
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+                <TableView fx:id="taskTableView" layoutY="27.0" prefHeight="372.0" prefWidth="133.0">
+                    <columns>
+                        <TableColumn fx:id="taskTableColumn" prefWidth="132.0" text="Task"/>
+                    </columns>
+                </TableView>
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="135.0" layoutY="19.0" prefHeight="35.0"
+                       prefWidth="502.0" text="To do!" textAlignment="CENTER" textFill="#006122">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </Label>
+                <Button fx:id="doneButton" layoutX="574.0" layoutY="360.0" mnemonicParsing="false" text="Done!" textFill="#c93194">
+                    <effect>
+                        <Lighting>
+                            <bumpInput>
+                                <Shadow/>
+                            </bumpInput>
+                            <light>
+                                <Light.Distant/>
+                            </light>
+                        </Lighting>
+                    </effect>
+                </Button>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>
