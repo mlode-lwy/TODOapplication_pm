@@ -32,6 +32,7 @@ public class Tasks {
     private String dueDate;
 
     @Column(name="STATUS")
+    @Enumerated(EnumType.STRING)
     private TaskStatus status;
 
     @Column(name="USER_ID")

@@ -15,6 +15,7 @@ import pl.ml.TaskController.Tasks;
 import pl.ml.UserController.Users;
 
 
+import javax.persistence.TypedQuery;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -64,12 +65,15 @@ public class TaskSceneController implements Initializable {
     public void loadTasks() {
         session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-//        int uid = user.getUserID();
-        List<Tasks> tasksList = session.createQuery(
-                "FROM Tasks WHERE USER_ID = " + user.getUserID())
-                .getResultList();
-        user.setListTasks(tasksList);
-        tasksObservableList.addAll(tasksList);
+        TypedQuery<Tasks> query = session.createQuery(
+                "FROM Tasks "
+                        + "WHERE USER_ID ='"
+                        + user.getUserID()
+                        + "'", Tasks.class);
+
+        tasksObservableList = FXCollections.<Tasks> observableArrayList(query.getResultList());
+        taskTableView.setItems(tasksObservableList);
+        taskTableColumn.setText("Nazwa taska");
         taskTableColumn.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getTaskName()));
     }
 }
